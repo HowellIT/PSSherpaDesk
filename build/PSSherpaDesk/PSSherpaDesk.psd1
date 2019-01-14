@@ -69,9 +69,10 @@ Copyright = '(c) 2019 Anthony Howell. All rights reserved.'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = 'Get-SherpaDeskAPIKey', 'Get-SherpaDeskMetadata', 
-               'Get-SherpaDeskTicket', 'Invoke-SherpaDeskAPICall', 
-               'New-SherpaDeskAuthConfig'
+FunctionsToExport = 'Get-SherpaDeskAccount', 'Get-SherpaDeskAPIKey', 
+               'Get-SherpaDeskMetadata', 'Get-SherpaDeskProject', 
+               'Get-SherpaDeskTechs', 'Get-SherpaDeskTicket', 'Get-SherpaDeskTime', 
+               'Invoke-SherpaDeskAPICall', 'Set-SherpaDeskTicket'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()
