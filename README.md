@@ -2,6 +2,11 @@
 
 This module is designed to work with Shera Desk's API (https://sherpadesk.com)
 
+Their API docs:
+
+ - https://github.com/sherpadesk/api/wiki
+ - https://documenter.getpostman.com/view/4454237/apisherpadeskcom-playground/RW8AooQg
+
 This is not endorsed by Sherpa Desk, I've developed it because I use the product and prefer to automate what I can.
 
 This module mostly just retrieves some of the data so far, but more can be added.
