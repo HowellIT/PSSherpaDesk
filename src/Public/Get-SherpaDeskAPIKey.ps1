@@ -22,8 +22,7 @@ Function Get-SherpaDeskAPIKey {
 
     $header = @{
         Authorization = "Basic $encodedUP"
-        #'Content-Type' = 'application/json'
-        'Accept' = 'application/json'
+        Accept = 'application/json'
     }
     Invoke-RestMethod -Method Get -Uri 'https://api.sherpadesk.com/login' -Headers $header
 }
