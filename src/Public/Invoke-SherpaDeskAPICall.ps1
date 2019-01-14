@@ -21,8 +21,9 @@ Essentially streamlining my invoicing:
 Function Invoke-SherpaDeskAPICall {
     Param(
         [string]$Resource,
-        [ValidateSet('Get')]
+        [ValidateSet('Get','Put')]
         [string]$Method,
+        [string]$Body,
         [string]$Organization,
         [string]$Instance,
         [string]$ApiKey
@@ -35,6 +36,10 @@ Function Invoke-SherpaDeskAPICall {
         Authorization = "Basic $encodedAuth"
         Accept = 'application/json'
     }
-
-    Invoke-RestMethod -Method $Method -Uri "$baseUri/$Resource" -Headers $header
+    
+    If($Method -eq 'Get'){
+        Invoke-RestMethod -Method $Method -Uri "$baseUri/$Resource" -Headers $header
+    }ElseIf($Method -eq 'Put'){
+        Invoke-RestMethod -Method $Method -Uri "$baseUri/$Resource" -Headers $header -ContentType 'application/json' -Body $Body
+    }
 }
