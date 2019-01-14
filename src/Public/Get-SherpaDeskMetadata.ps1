@@ -1,6 +1,7 @@
 Function Get-SherpaDeskMetadata {
     Param(
-        [string]$ApiKey
+        [string]$ApiKey = $AuthConfig.ApiKey,
+        [switch]$PassThru
     )
     
     $encodedAuth = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("x:$ApiKey"))
@@ -10,5 +11,10 @@ Function Get-SherpaDeskMetadata {
         Accept = 'application/json'
     }
 
-    Invoke-RestMethod -Uri 'https://api.sherpadesk.com/organizations/' -Method Get -Headers $header
+    $resp = Invoke-RestMethod -Uri 'https://api.sherpadesk.com/organizations/' -Method Get -Headers $header
+    $Script:AuthConfig.WorkingOrganization = $resp[0].key
+    $Script:AuthConfig.WorkingInstance = $resp[0].instances[0].key
+    If($PassThru.IsPresent){
+        $resp
+    }
 }

@@ -10,7 +10,8 @@ Function Get-SherpaDeskAPIKey {
         [Parameter(
             ParameterSetName = 'Credential'
         )]
-        [pscredential]$Credential
+        [pscredential]$Credential,
+        [switch]$PassThru
     )
 
     If($PSCmdlet.ParameterSetName -eq 'EmailOnly'){
@@ -24,5 +25,13 @@ Function Get-SherpaDeskAPIKey {
         Authorization = "Basic $encodedUP"
         Accept = 'application/json'
     }
-    Invoke-RestMethod -Method Get -Uri 'https://api.sherpadesk.com/login' -Headers $header
+    $resp = Invoke-RestMethod -Method Get -Uri 'https://api.sherpadesk.com/login' -Headers $header
+    $Script:AuthConfig = @{
+        ApiKey = $resp.api_token
+        WorkingOrganization = ''
+        WorkingInstance = ''
+    }
+    If($PassThru.IsPresent){
+        $resp.api_token
+    }
 }
