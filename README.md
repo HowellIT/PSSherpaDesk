@@ -27,7 +27,7 @@ To be able to use this module, you must already have a Sherpa Desk account.
 Using the email address for your account:
 
 ```PowerShell
-Get-SherpaDeskAPIKey -Email 'email@domain.com'
+Get-SDAPIKey -Email 'email@domain.com'
 ```
 
 This will prompt you for your password and store the API key in a module-scoped AuthConfig variable for the other cmdlets to reference.
@@ -37,7 +37,7 @@ There is an optional ```-PassThru``` parameter if you wish it to be returned as 
 Sherpa Desk requires an Organization and Instance to be sent with each request, these can be retrieved with:
 
 ```PowerShell
-Get-SherpaDeskMetadata
+Get-SDMetadata
 ```
 
 This will also add these to the module-scoped AuthConfig variable for the other cmdlets to access. It currently sets the first Organization and the first Instance as the working reference points.
@@ -47,13 +47,13 @@ This will also add these to the module-scoped AuthConfig variable for the other 
 To retrieve all data:
 
 ```PowerShell
-Get-SherpaDeskTicket
+Get-SDTicket
 ```
 
 To get a single object:
 
 ```PowerShell
-Get-SherpaDeskTicket -Key <ticket key or ID>
+Get-SDTicket -Key <ticket key or ID>
 ```
 
 ## How to set data
@@ -61,5 +61,5 @@ Get-SherpaDeskTicket -Key <ticket key or ID>
 Currently PSSherpaDesk only supports setting the status of tickets:
 
 ```PowerShell
-Set-SherpaDeskTicket -Key <ticket key or ID> -Status 'Closed'
+Set-SDTicket -Key <ticket key or ID> -Status 'Closed'
 ```
