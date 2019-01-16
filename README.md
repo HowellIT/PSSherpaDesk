@@ -46,7 +46,7 @@ Get-SDMetadata
 
 This will also add these to the module-scoped AuthConfig variable for the other cmdlets to access. It currently sets the first Organization and the first Instance as the working reference points.
 
-*Once you have run both ```Get-SDAPIKey``` and ```Get-SDMetadata``` all cmdlets will not require authentication.*
+**Once you have run both ```Get-SDAPIKey``` and ```Get-SDMetadata``` all cmdlets will not require authentication.**
 
 ## How to query
 
