@@ -23,9 +23,9 @@ Function Set-SDTicket {
         $body['status'] = $Status
     }
 
-    $body = $body | ConvertTo-Json
+    $jsonbody = $body | ConvertTo-Json
 
-    Write-Verbose $body
+    Write-Verbose $jsonbody
 
-    Invoke-SherpaDeskAPICall -Method Put -Resource $resource -Organization $Organization -Instance $Instance -ApiKey $ApiKey -Body $body
+    Invoke-SherpaDeskAPICall -Method Put -Resource $resource -Organization $Organization -Instance $Instance -ApiKey $ApiKey -Body $jsonbody
 }
