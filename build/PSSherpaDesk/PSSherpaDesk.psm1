@@ -1,7 +1,7 @@
 Function Invoke-SherpaDeskAPICall {
     Param(
         [string]$Resource,
-        [ValidateSet('Get','Put')]
+        [ValidateSet('Get','Put','Post')]
         [string]$Method,
         [string]$Body,
         [string]$Organization,
@@ -19,7 +19,7 @@ Function Invoke-SherpaDeskAPICall {
     
     If($Method -eq 'Get'){
         Invoke-RestMethod -Method $Method -Uri "$baseUri/$Resource" -Headers $header
-    }ElseIf($Method -eq 'Put'){
+    }ElseIf(@('Post','Put') -contains $Method){
         Invoke-RestMethod -Method $Method -Uri "$baseUri/$Resource" -Headers $header -ContentType 'application/json' -Body $Body
     }
 }
@@ -185,6 +185,79 @@ Function Get-SDTime {
     }Else{
         Invoke-SherpaDeskAPICall -Resource time -Method Get -Organization $Organization -Instance $Instance -ApiKey $ApiKey
     }
+}
+Function New-SDTicket {
+    [cmdletbinding(
+        DefaultParameterSetName = 'ByParameter'
+    )]
+    Param(
+        [Parameter(
+            ParameterSetName = 'ByParameter'
+        )]
+        [string]$Status,
+        [Parameter(
+            ParameterSetName = 'ByParameter'
+        )]
+        [string]$Subject,
+        [Parameter(
+            ParameterSetName = 'ByParameter'
+        )]
+        [string]$FirstPost,
+        [Parameter(
+            ParameterSetName = 'ByParameter'
+        )]
+        [int]$Class,
+        [Parameter(
+            ParameterSetName = 'ByParameter'
+        )]
+        [int]$Account,
+        [Parameter(
+            ParameterSetName = 'ByParameter'
+        )]
+        [int]$Location,
+        [Parameter(
+            ParameterSetName = 'ByParameter'
+        )]
+        [int]$User,
+        [Parameter(
+            ParameterSetName = 'ByParameter'
+        )]
+        [int]$Tech,
+        [Parameter(
+            ParameterSetName = 'ByBody'
+        )]
+        [hashtable]$Body,
+        [string]$Organization = $authConfig.WorkingOrganization,
+        [string]$Instance = $authConfig.WorkingInstance,
+        [string]$ApiKey = $authConfig.ApiKey
+    )
+    $NewTicketParams = @{
+        Status = 'status'
+        Subject = 'subject'
+        FirstPost = 'initial_post'
+        Class = 'class_id'
+        Account = 'account_id'
+        Location = 'location_id'
+        User = 'user_id'
+        Tech = 'tech_id'
+    }
+
+    $resource = "tickets"
+    
+    If($PSCmdlet.ParameterSetName -eq 'ByParameter'){
+        $body = @{}
+        ForEach($parameter in $PSBoundParameters.GetEnumerator() | Where-Object {@('Verbose','Debug') -notcontains $_.key}){
+            Write-Verbose $parameter.key
+            Write-Verbose $parameter.value
+            $body["$($NewTicketParams["$($parameter.key)"])"] = $parameter.value
+        }
+    }
+
+    $jsonbody = $body | ConvertTo-Json
+
+    Write-Verbose $jsonbody
+
+    Invoke-SherpaDeskAPICall -Method Post -Resource $resource -Organization $Organization -Instance $Instance -ApiKey $ApiKey -Body $jsonbody
 }
 Function Set-SDTicket {
     [cmdletbinding(

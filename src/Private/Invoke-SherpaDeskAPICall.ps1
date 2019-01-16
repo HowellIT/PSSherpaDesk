@@ -1,7 +1,7 @@
 Function Invoke-SherpaDeskAPICall {
     Param(
         [string]$Resource,
-        [ValidateSet('Get','Put')]
+        [ValidateSet('Get','Put','Post')]
         [string]$Method,
         [string]$Body,
         [string]$Organization,
@@ -19,7 +19,7 @@ Function Invoke-SherpaDeskAPICall {
     
     If($Method -eq 'Get'){
         Invoke-RestMethod -Method $Method -Uri "$baseUri/$Resource" -Headers $header
-    }ElseIf($Method -eq 'Put'){
+    }ElseIf(@('Post','Put') -contains $Method){
         Invoke-RestMethod -Method $Method -Uri "$baseUri/$Resource" -Headers $header -ContentType 'application/json' -Body $Body
     }
 }

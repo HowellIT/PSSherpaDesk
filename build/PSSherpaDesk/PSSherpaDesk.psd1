@@ -71,7 +71,7 @@ Copyright = '(c) 2019 Anthony Howell. All rights reserved.'
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 FunctionsToExport = 'Get-SDAccount', 'Get-SDAPIKey', 'Get-SDMetadata', 'Get-SDProject', 
                'Get-SDTaskTypes', 'Get-SDTechs', 'Get-SDTicket', 'Get-SDTime', 
-               'Set-SDTicket'
+               'New-SDTicket', 'Set-SDTicket'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()
