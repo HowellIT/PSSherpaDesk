@@ -1,4 +1,4 @@
-Function Get-SherpaDeskAccount{
+Function Get-SDAccount{
     Param(
         [parameter(
             ParameterSetName = 'ByKey'
@@ -16,7 +16,7 @@ Function Get-SherpaDeskAccount{
 
     Invoke-SherpaDeskAPICall -Resource $resource -Method Get -Organization $Organization -Instance $Instance -ApiKey $ApiKey
 }
-Function Get-SherpaDeskAPIKey {
+Function Get-SDAPIKey {
     [cmdletbinding(
         DefaultParameterSetName = 'EmailOnly'
     )]
@@ -53,7 +53,7 @@ Function Get-SherpaDeskAPIKey {
         $resp.api_token
     }
 }
-Function Get-SherpaDeskMetadata {
+Function Get-SDMetadata {
     Param(
         [string]$ApiKey = $AuthConfig.ApiKey,
         [switch]$PassThru
@@ -73,7 +73,7 @@ Function Get-SherpaDeskMetadata {
         $resp
     }
 }
-Function Get-SherpaDeskProject {
+Function Get-SDProject {
     [cmdletbinding()]
     Param(
         [parameter(
@@ -91,7 +91,7 @@ Function Get-SherpaDeskProject {
 
     Invoke-SherpaDeskAPICall -Resource $resource -Method Get -Organization $Organization -Instance $Instance -ApiKey $ApiKey
 }
-Function Get-SherpaDeskTechs {
+Function Get-SDTechs {
     [cmdletbinding()]
     Param(
         [string]$Organization = $authConfig.WorkingOrganization,
@@ -102,7 +102,7 @@ Function Get-SherpaDeskTechs {
 
     Invoke-SherpaDeskAPICall -Resource $resource -Method Get -Organization $Organization -Instance $Instance -ApiKey $ApiKey
 }
-Function Get-SherpaDeskTicket{
+Function Get-SDTicket{
     [cmdletbinding()]
     Param(
         [parameter(
@@ -120,7 +120,7 @@ Function Get-SherpaDeskTicket{
 
     Invoke-SherpaDeskAPICall -Resource $resource -Method Get -Organization $Organization -Instance $Instance -ApiKey $ApiKey
 }
-Function Get-SherpaDeskTime {
+Function Get-SDTime {
     [cmdletbinding()]
     Param(
         [string]$Account,
@@ -175,10 +175,19 @@ Function Invoke-SherpaDeskAPICall {
         Invoke-RestMethod -Method $Method -Uri "$baseUri/$Resource" -Headers $header -ContentType 'application/json' -Body $Body
     }
 }
-Function Set-SherpaDeskTicket {
-    [cmdletbinding()]
+Function Set-SDTicket {
+    [cmdletbinding(
+        DefaultParameterSetName = 'ByParameter'
+    )]
     Param(
+        [Parameter(
+            ParameterSetName = 'ByParameter'
+        )]
         [string]$Status,
+        [Parameter(
+            ParameterSetName = 'ByBody'
+        )]
+        [hashtable]$Body,
         [string]$key,
         [string]$Organization = $authConfig.WorkingOrganization,
         [string]$Instance = $authConfig.WorkingInstance,
@@ -186,8 +195,10 @@ Function Set-SherpaDeskTicket {
     )
     $resource = "tickets/$key"
     
-    $body = @{}
-    $body['status'] = $Status
+    If($PSCmdlet.ParameterSetName -eq 'ByParameter'){
+        $body = @{}
+        $body['status'] = $Status
+    }
 
     $body = $body | ConvertTo-Json
 
