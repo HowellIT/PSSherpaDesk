@@ -8,7 +8,7 @@ Task Manual -depends Build
 Task Build -depends Clean {
     #build module file
     $scriptFiles = Get-ChildItem $env:ProjectRoot\src -Filter *.ps1 -Recurse -Exclude *.ps1xml
-    $functionsToExport = Get-ChildItem $env:ProjectRoot\src\public |  %{($_.name -replace '\-SherpaDesk', '\-SD').replace(".ps1","")}
+    $functionsToExport = Get-ChildItem $env:ProjectRoot\src\public |  %{($_.name -replace '\-SherpaDesk', '-SD').replace(".ps1","")}
     #$formatsToExport = Get-ChildItem $env:ProjectRoot\src\classes -Filter *format.ps1xml
     If(-not(Test-Path $env:ModuleTempDir\$env:ModuleName)){
         New-Item $env:ModuleTempDir\$env:ModuleName -ItemType Directory | Out-Null
