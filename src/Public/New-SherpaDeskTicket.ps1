@@ -58,10 +58,10 @@ Function New-SDTicket {
     
     If($PSCmdlet.ParameterSetName -eq 'ByParameter'){
         $body = @{}
-        ForEach($parameter in $PSBoundParameters.GetEnumerator() | Where-Object {@('Verbose','Debug') -notcontains $_.key}){
-            Write-Verbose $parameter.key
-            Write-Verbose $parameter.value
-            $body["$($NewTicketParams["$($parameter.key)"])"] = $parameter.value
+        ForEach($param in $NewTicketParams.GetEnumerator()){
+            If($PSBoundParameters.ContainsKey($param.key)){
+                $body["$($param.value)"] = $PSBoundParameters["$($param.key)"]
+            }
         }
     }
 

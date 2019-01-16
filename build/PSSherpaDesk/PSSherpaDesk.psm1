@@ -186,6 +186,17 @@ Function Get-SDTime {
         Invoke-SherpaDeskAPICall -Resource time -Method Get -Organization $Organization -Instance $Instance -ApiKey $ApiKey
     }
 }
+Function Get-SDUser {
+    [cmdletbinding()]
+    Param(
+        [string]$Organization = $authConfig.WorkingOrganization,
+        [string]$Instance = $authConfig.WorkingInstance,
+        [string]$ApiKey = $authConfig.ApiKey
+    )
+    $resource = 'users'
+
+    Invoke-SherpaDeskAPICall -Resource $resource -Method Get -Organization $Organization -Instance $Instance -ApiKey $ApiKey
+}
 Function New-SDTicket {
     [cmdletbinding(
         DefaultParameterSetName = 'ByParameter'
@@ -246,10 +257,10 @@ Function New-SDTicket {
     
     If($PSCmdlet.ParameterSetName -eq 'ByParameter'){
         $body = @{}
-        ForEach($parameter in $PSBoundParameters.GetEnumerator() | Where-Object {@('Verbose','Debug') -notcontains $_.key}){
-            Write-Verbose $parameter.key
-            Write-Verbose $parameter.value
-            $body["$($NewTicketParams["$($parameter.key)"])"] = $parameter.value
+        ForEach($param in $NewTicketParams.GetEnumerator()){
+            If($PSBoundParameters.ContainsKey($param.key)){
+                $body["$($param.value)"] = $PSBoundParameters["$($param.key)"]
+            }
         }
     }
 
