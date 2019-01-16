@@ -9,11 +9,15 @@ Their API docs:
 
 This is not endorsed by Sherpa Desk, I've developed it because I use the product and prefer to automate what I can.
 
-This module mostly just retrieves some of the data so far, but more can be added.
+This module mostly just retrieves some of the data so far, but more is being added as needed.
+
+This doc is just a standin until I update all the help for each cmdlet.
 
 PRs welcome!
 
 ## How to set up
+
+Publishing to the PSGallery soon.
 
 Download or clone this repo and:
 
@@ -42,6 +46,8 @@ Get-SDMetadata
 
 This will also add these to the module-scoped AuthConfig variable for the other cmdlets to access. It currently sets the first Organization and the first Instance as the working reference points.
 
+*Once you have run both ```Get-SDAPIKey``` and ```Get-SDMetadata``` all cmdlets will not require authentication.*
+
 ## How to query
 
 To retrieve all data:
@@ -58,8 +64,26 @@ Get-SDTicket -Key <ticket key or ID>
 
 ## How to set data
 
-Currently PSSherpaDesk only supports setting the status of tickets:
+To set one property (where supported):
 
 ```PowerShell
 Set-SDTicket -Key <ticket key or ID> -Status 'Closed'
+```
+
+To set multiple properties:
+
+```PowerShell
+$body = @{
+    status = 'waiting'
+    note_text = 'This is the note text'
+}
+Set-SDTicket -key <ticket key or ID> -Body $body
+```
+
+## How to create data
+
+To create a new user:
+
+```PowerShell
+New-SDUser -FirstName 'Anthony' -LastName 'Howell' -Email 'anthony@howell-it.com'
 ```
