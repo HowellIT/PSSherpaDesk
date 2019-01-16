@@ -1,4 +1,4 @@
-Function Get-SherpaDeskProject {
+Function Get-SDProject {
     [cmdletbinding()]
     Param(
         [parameter(

@@ -1,4 +1,4 @@
-Function Get-SherpaDeskTechs {
+Function Get-SDTechs {
     [cmdletbinding()]
     Param(
         [string]$Organization = $authConfig.WorkingOrganization,

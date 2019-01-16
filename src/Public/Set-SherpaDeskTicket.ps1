@@ -1,4 +1,4 @@
-Function Set-SherpaDeskTicket {
+Function Set-SDTicket {
     [cmdletbinding(
         DefaultParameterSetName = 'ByParameter'
     )]
@@ -22,7 +22,7 @@ Function Set-SherpaDeskTicket {
         $body = @{}
         $body['status'] = $Status
     }
-    
+
     $body = $body | ConvertTo-Json
 
     Write-Verbose $body

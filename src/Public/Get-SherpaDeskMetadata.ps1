@@ -1,4 +1,4 @@
-Function Get-SherpaDeskMetadata {
+Function Get-SDMetadata {
     Param(
         [string]$ApiKey = $AuthConfig.ApiKey,
         [switch]$PassThru

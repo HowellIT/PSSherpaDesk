@@ -1,4 +1,4 @@
-Function Get-SherpaDeskAPIKey {
+Function Get-SDAPIKey {
     [cmdletbinding(
         DefaultParameterSetName = 'EmailOnly'
     )]

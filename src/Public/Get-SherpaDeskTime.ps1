@@ -1,4 +1,4 @@
-Function Get-SherpaDeskTime {
+Function Get-SDTime {
     [cmdletbinding()]
     Param(
         [string]$Account,

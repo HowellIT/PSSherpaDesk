@@ -1,4 +1,4 @@
-Function Get-SherpaDeskAccount{
+Function Get-SDAccount{
     Param(
         [parameter(
             ParameterSetName = 'ByKey'

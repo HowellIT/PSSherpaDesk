@@ -1,4 +1,4 @@
-Function Get-SherpaDeskTicket{
+Function Get-SDTicket{
     [cmdletbinding()]
     Param(
         [parameter(
