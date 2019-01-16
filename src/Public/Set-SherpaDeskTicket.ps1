@@ -1,7 +1,16 @@
 Function Set-SherpaDeskTicket {
-    [cmdletbinding()]
+    [cmdletbinding(
+        DefaultParameterSetName = 'ByParameter'
+    )]
     Param(
+        [Parameter(
+            ParameterSetName = 'ByParameter'
+        )]
         [string]$Status,
+        [Parameter(
+            ParameterSetName = 'ByBody'
+        )]
+        [hashtable]$Body,
         [string]$key,
         [string]$Organization = $authConfig.WorkingOrganization,
         [string]$Instance = $authConfig.WorkingInstance,
@@ -9,9 +18,11 @@ Function Set-SherpaDeskTicket {
     )
     $resource = "tickets/$key"
     
-    $body = @{}
-    $body['status'] = $Status
-
+    If($PSCmdlet.ParameterSetName -eq 'ByParameter'){
+        $body = @{}
+        $body['status'] = $Status
+    }
+    
     $body = $body | ConvertTo-Json
 
     Write-Verbose $body
