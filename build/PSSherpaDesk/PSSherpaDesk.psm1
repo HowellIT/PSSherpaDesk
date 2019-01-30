@@ -1,3 +1,20 @@
+Function Get-SDSavePath {
+    Param (
+
+    )
+    If($PSVersionTable.PSVersion.Major -ge 6){
+        # PS Core
+        If($IsLinux){
+            $saveDir = $env:HOME
+        }ElseIf($IsWindows){
+            $saveDir = $env:USERPROFILE
+        }
+    }Else{
+        # Windows PS
+        $saveDir = $env:USERPROFILE
+    }
+    "$saveDir\.pssherpadesk"
+}
 Function Invoke-SherpaDeskAPICall {
     Param(
         [string]$Resource,
@@ -76,6 +93,24 @@ Function Get-SDAPIKey {
     }
     If($PassThru.IsPresent){
         $resp.api_token
+    }
+}
+Function Get-SDAuthConfig {
+    Param(
+
+    )
+    If($AuthConfig){
+        $AuthConfig
+    }Else{
+        $dir = Get-SDSavePath
+        If(Test-Path $dir\credentials.json){
+            $encryptedAuth = Get-Content $dir\credentials.json | ConvertFrom-Json
+        }
+        $script:AuthConfig = @{}
+        ForEach($property in $encryptedAuth.psobject.Properties){
+            $AuthConfig."$($property.name)" = [pscredential]::New('user',(ConvertTo-SecureString $property.value)).GetNetworkCredential().password
+        }
+        $AuthConfig
     }
 }
 Function Get-SDMetadata {
@@ -328,6 +363,23 @@ Function New-SDUser {
     Write-Verbose $jsonbody
 
     Invoke-SherpaDeskAPICall -Method Post -Resource $resource -Organization $Organization -Instance $Instance -ApiKey $ApiKey -Body $jsonbody
+}
+Function Save-SDAuthConfig {
+    Param(
+
+    )
+    $dir = Get-SDSavePath
+    If(-not(Test-Path $dir -PathType Container)){
+        New-Item $dir -ItemType Directory
+    }
+    If(-not(Test-Path $dir\credentials.json -PathType Leaf)){
+        New-Item $dir\credentials.json -ItemType File
+    }
+    $encryptedAuth = @{}
+    ForEach($property in $AuthConfig.GetEnumerator()){
+        $encryptedAuth."$($property.Name)" = (ConvertFrom-SecureString (ConvertTo-SecureString $property.Value -AsPlainText -Force))
+    }
+    $encryptedAuth | ConvertTo-Json | Set-Content $dir\credentials.json
 }
 Function Set-SDTicket {
     [cmdletbinding(
