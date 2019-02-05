@@ -41,10 +41,10 @@ Task Analyze -depends Build {
     #still need to get my PSScriptANalyzer going
 }
 Task Deploy -depends Test,Analyze {
-    #eventually
+    Publish-Module -Name PoShPal -NuGetApiKey $ENV:PSGalleryKey
 }
 Task Clean {
     If(Test-Path $env:ModuleTempDir\$env:ModuleName){
-    Remove-Item $env:ModuleTempDir\$env:ModuleName -Recurse -Force
+        Remove-Item $env:ModuleTempDir\$env:ModuleName -Recurse -Force
     }
 }
