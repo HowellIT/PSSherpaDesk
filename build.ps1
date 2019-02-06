@@ -1,4 +1,3 @@
-#Requires -Modules psake
 [cmdletbinding()]
 param(
     [string[]]$Task = 'manual'
