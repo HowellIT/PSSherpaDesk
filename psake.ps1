@@ -32,7 +32,7 @@ Task Build -depends Clean {
     }
     Update-ModuleManifest @moduleManifestData
     Import-Module $env:ModuleTempDir\$env:ModuleName -RequiredVersion $env:ModuleVersion
-    New-ExternalHelp -Path $env:ProjectRoot\docs\ -OutputPath $env:ModuleTempDir\$env:ModuleName\en-us
+    #New-ExternalHelp -Path $env:ProjectRoot\docs\ -OutputPath $env:ModuleTempDir\$env:ModuleName\en-us
 }
 Task Test -depends Build {
     #still need to create pester tests
