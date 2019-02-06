@@ -2,7 +2,7 @@
 
 # PSSherpaDesk
 
-This module is designed to work with Shera Desk's API (https://sherpadesk.com)
+This module is designed to work with SherpaDesk's API (https://sherpadesk.com)
 
 Their API docs:
 
