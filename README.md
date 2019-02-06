@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/ThePoShWolf/PSSherpaDesk/_apis/build/status/PSSherpaDesk-CI?branchName=master)](https://dev.azure.com/ThePoShWolf/PSSherpaDesk/_build/latest?definitionId=1&branchName=master)
+
 # PSSherpaDesk
 
 This module is designed to work with Shera Desk's API (https://sherpadesk.com)
