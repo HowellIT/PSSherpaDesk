@@ -3,7 +3,7 @@ Properties{
     $ErrorActionPreference = "Stop"
 }
 
-Task Manual -depends Build
+Task Manual -depends Deploy
 
 Task Build -depends Clean {
     #build module file
