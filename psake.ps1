@@ -23,7 +23,7 @@ Task Build -depends Clean {
     }#>
     $moduleManifestData = @{
         Author = $env:Author
-        Copyright = "(c) $((get-date).Year) $env:Author. All rights reserved."
+        Copyright = "(c) $((get-date).Year) Howell IT, LLC. All rights reserved."
         Path = "$env:ModuleTempDir\$env:ModuleName\$env:ModuleName.psd1"
         FunctionsToExport = $FunctionstoExport
         RootModule = "$env:ModuleName.psm1"
