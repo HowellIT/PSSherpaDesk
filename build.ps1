@@ -12,7 +12,7 @@ Foreach ($Module in $DependentModules){
 }
 $env:ModuleTempDir = "$PSScriptRoot\build" #$env:TEMP
 $env:ModuleName = "PSSherpaDesk"
-$env:Author = "Anthony Howell"
+$env:Author = "Howell IT, LLC"
 $env:ModuleVersion = "0.0.1"
 # Builds the module by invoking psake on the build.psake.ps1 script.
 Invoke-PSake $PSScriptRoot\psake.ps1 -taskList $Task
