@@ -17,7 +17,11 @@ PRs welcome! Check the [CONTRIBUTING.md](https://github.com/HowellIT/PSSherpaDes
 
 ## How to set up
 
-Publishing to the PSGallery soon.
+This module is now available in the PowerShell Gallery:
+
+```PowerShell
+Install-Module PSSherpaDesk
+```
 
 Download or clone this repo and:
 
