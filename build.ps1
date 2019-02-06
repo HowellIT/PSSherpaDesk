@@ -3,7 +3,7 @@ param(
     [string[]]$Task = 'manual'
 )
 
-$DependentModules = @('Pester','Psake','PlatyPS')
+$DependentModules = @('Pester','Psake','PlatyPS','PSDeploy')
 Foreach ($Module in $DependentModules){
     If (-not (Get-Module $module -ListAvailable)){
         Install-Module -name $Module -Scope CurrentUser -Force

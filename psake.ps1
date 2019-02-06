@@ -41,7 +41,8 @@ Task Analyze -depends Build {
     #still need to get my PSScriptANalyzer going
 }
 Task Deploy -depends Test,Analyze {
-    Publish-Module -Name PSSherpaDesk -NuGetApiKey $ENV:PSGalleryKey
+    #Get-Module PSSherpaDesk
+    Invoke-PSDeploy -Path $PSScriptRoot -Force
 }
 Task Clean {
     If(Test-Path $env:ModuleTempDir\$env:ModuleName){
