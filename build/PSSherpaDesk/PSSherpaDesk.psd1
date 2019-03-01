@@ -69,12 +69,10 @@ Description = 'PowerShell module for interacting with the SherpaDesk API'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = 'Get-SherpaDeskAccount', 'Get-SherpaDeskAPIKey', 
-               'Get-SherpaDeskAuthConfig', 'Get-SherpaDeskMetadata', 
-               'Get-SherpaDeskProject', 'Get-SherpaDeskTaskTypes', 
-               'Get-SherpaDeskTechs', 'Get-SherpaDeskTicket', 'Get-SherpaDeskTime', 
-               'Get-SherpaDeskUser', 'New-SherpaDeskTicket', 'New-SherpaDeskUser', 
-               'Save-SherpaDeskAuthConfig', 'Set-SherpaDeskTicket'
+FunctionsToExport = 'Get-SDAccount', 'Get-SDAPIKey', 'Get-SDAuthConfig', 'Get-SDMetadata', 
+               'Get-SDProject', 'Get-SDTaskTypes', 'Get-SDTechs', 'Get-SDTicket', 
+               'Get-SDTime', 'Get-SDUser', 'New-SDTicket', 'New-SDUser', 
+               'Save-SDAuthConfig', 'Set-SDTicket'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()
