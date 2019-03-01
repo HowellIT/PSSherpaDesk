@@ -1,6 +1,7 @@
 $srcPath = "$PSScriptRoot\src"
 $buildPath = "$PSScriptRoot\build"
 $docPath = "$PSScriptRoot\docs"
+$testPath = "$PSScriptRoot\tests"
 $moduleName = "PSSherpaDesk"
 $modulePath = "$buildPath\$moduleName"
 $author = 'Anthony Howell'
@@ -41,6 +42,11 @@ task ModuleBuild Clean, DocBuild, {
     }
     Update-ModuleManifest @moduleManifestData
     Import-Module $modulePath -RequiredVersion $version
+}
+
+task Test ModuleBuild, {
+    Save-SDAuthConfig -APIKey $env:SDApiKey -Instance $env:SDInstance -Organization $env:SDOrganization
+    Invoke-Pester $testPath
 }
 
 task Publish {

@@ -1,5 +1,10 @@
 InModuleScope -ModuleName PSSherpaDesk {
     Describe 'AuthConfig' -Tag 'Auth' {
+        Context 'Get' {
+            It 'Get-SDAuthConfig should return data' {
+                Get-SDAuthConfig | Should -Not -BeNullOrEmpty
+            }
+        }
         Context 'Save' {
             $dir = Get-SDSavePath
             $credFile = "$dir\credentials.json"
