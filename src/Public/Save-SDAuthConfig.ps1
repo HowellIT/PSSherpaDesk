@@ -6,17 +6,17 @@ Function Save-SDAuthConfig {
         [parameter(
             ParameterSetName = 'Passed'
         )]
-        [ValidateNotNullOrEmpty]
+        [ValidateNotNullOrEmpty()]
         [string]$Organization,
         [parameter(
             ParameterSetName = 'Passed'
         )]
-        [ValidateNotNullOrEmpty]
+        [ValidateNotNullOrEmpty()]
         [string]$Instance,
         [parameter(
             ParameterSetName = 'Passed'
         )]
-        [ValidateNotNullOrEmpty]
+        [ValidateNotNullOrEmpty()]
         [string]$ApiKey
     )
     $dir = Get-SDSavePath
