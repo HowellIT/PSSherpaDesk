@@ -49,7 +49,7 @@ task Test ModuleBuild, {
     Invoke-Pester $testPath
 }
 
-task Publish {
+task Publish Test, {
     Invoke-PSDeploy -Path $PSScriptRoot -Force
 }
 
