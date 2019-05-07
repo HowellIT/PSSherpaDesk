@@ -327,8 +327,25 @@ Function New-SDUser {
     Invoke-SherpaDeskAPICall -Method Post -Resource $resource -Organization $Organization -Instance $Instance -ApiKey $ApiKey -Body $jsonbody
 }
 Function Save-SDAuthConfig {
+    [cmdletbinding(
+        DefaultParameterSetName = 'FromAuthConfig'
+    )]
     Param(
-
+        [parameter(
+            ParameterSetName = 'Passed'
+        )]
+        [ValidateNotNullOrEmpty()]
+        [string]$Organization,
+        [parameter(
+            ParameterSetName = 'Passed'
+        )]
+        [ValidateNotNullOrEmpty()]
+        [string]$Instance,
+        [parameter(
+            ParameterSetName = 'Passed'
+        )]
+        [ValidateNotNullOrEmpty()]
+        [string]$ApiKey
     )
     $dir = Get-SDSavePath
     If(-not(Test-Path $dir -PathType Container)){
@@ -336,6 +353,13 @@ Function Save-SDAuthConfig {
     }
     If(-not(Test-Path $dir\credentials.json -PathType Leaf)){
         New-Item $dir\credentials.json -ItemType File
+    }
+    If($PSCmdlet.ParameterSetName -eq 'Passed'){
+        $Script:AuthConfig = @{
+            ApiKey = $ApiKey
+            WorkingOrganization = $Organization
+            WorkingInstance = $Instance
+        }
     }
     $encryptedAuth = @{}
     ForEach($property in $AuthConfig.GetEnumerator()){

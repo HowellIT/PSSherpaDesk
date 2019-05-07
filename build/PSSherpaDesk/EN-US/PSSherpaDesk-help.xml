@@ -6,11 +6,11 @@
       <command:verb>Get</command:verb>
       <command:noun>SDAccount</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Gets SherpaDesk accounts. which are groupings of users. Typically things like departments, clients, etc.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Gets SherpaDesk accounts. Accounts in SherpaDesk are groupings of users. Typically things like departments, clients, etc.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -18,7 +18,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ApiKey</maml:name>
           <maml:Description>
-            <maml:para>{{Fill ApiKey Description}}</maml:para>
+            <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -30,7 +32,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Instance</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Instance Description}}</maml:para>
+            <maml:para>Your SherpaDesk instance. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -42,7 +46,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Key</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Key Description}}</maml:para>
+            <maml:para>The ID of a specific account you'd like to retrieve.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -54,7 +58,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Organization</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Organization Description}}</maml:para>
+            <maml:para>Your SherpaDesk Organization. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -69,7 +75,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>ApiKey</maml:name>
         <maml:Description>
-          <maml:para>{{Fill ApiKey Description}}</maml:para>
+          <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -81,7 +89,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Instance</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Instance Description}}</maml:para>
+          <maml:para>Your SherpaDesk instance. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -93,7 +103,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Key</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Key Description}}</maml:para>
+          <maml:para>The ID of a specific account you'd like to retrieve.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -105,7 +115,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Organization</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Organization Description}}</maml:para>
+          <maml:para>Your SherpaDesk Organization. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -143,9 +155,57 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Get-SDAccount
+
+id                 : 00000
+name               : Camping Supplies, Inc
+task_types         :
+projects           :
+locations          :
+account_statistics : @{ticket_counts=; timelogs=0; contracts=1; hours=2.0000; expenses=0}</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>This will return a listing of all accounts that you have set up in SherpaDesk</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-SDAccount -Key 00000
+
+id                     : 00000
+name                   : Camping Supplies, Inc
+note                   :
+is_active              : True
+is_organization        : True
+bwd_number             : 1005
+client_contract_id     :
+number                 :
+ref1                   :
+ref2                   :
+representative_name    : Administrator, Anthony Howell
+internal_location_name :
+city                   :
+state                  :
+zipcode                :
+country                :
+phone1                 :
+phone2                 :
+address1               :
+address2               :
+email_suffix           :
+fb_client_id           : 0
+qb_customer_id         : 0
+xero_contact_id        :
+logo                   :
+files                  :
+locations              :
+users                  : {}
+projects               : {}
+assets                 :
+account_statistics     : @{ticket_counts=; timelogs=0; contracts=1; hours=2.0000; expenses=0}
+primary_contact        :
+customfields           : {}</dev:code>
+        <dev:remarks>
+          <maml:para>This will return more data about the specified account.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -157,11 +217,11 @@
       <command:verb>Get</command:verb>
       <command:noun>SDAPIKey</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Returns your API Key from the SherpaDesk API.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>With your email and password, Get-SDApiKey can return your API key and store it to a module scoped variable for automatic usage in all member cmdlets.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -169,7 +229,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Credential</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Credential Description}}</maml:para>
+            <maml:para>A credential object with your SherpaDesk account email and password.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
           <dev:type>
@@ -181,7 +241,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>PassThru</maml:name>
           <maml:Description>
-            <maml:para>{{Fill PassThru Description}}</maml:para>
+            <maml:para>Specify if you'd like your API key output to the console.</maml:para>
           </maml:Description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -195,7 +255,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Email</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Email Description}}</maml:para>
+            <maml:para>Your SherpaDesk account email.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -207,7 +267,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>PassThru</maml:name>
           <maml:Description>
-            <maml:para>{{Fill PassThru Description}}</maml:para>
+            <maml:para>Specify if you'd like your API key output to the console.</maml:para>
           </maml:Description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -221,7 +281,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Credential</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Credential Description}}</maml:para>
+          <maml:para>A credential object with your SherpaDesk account email and password.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
         <dev:type>
@@ -233,7 +293,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Email</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Email Description}}</maml:para>
+          <maml:para>Your SherpaDesk account email.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -245,7 +305,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>PassThru</maml:name>
         <maml:Description>
-          <maml:para>{{Fill PassThru Description}}</maml:para>
+          <maml:para>Specify if you'd like your API key output to the console.</maml:para>
         </maml:Description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -283,9 +343,19 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Get-SDApiKey -Email 'anthony@howell-it.com'</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>This example will prompt you for a password and silently store the API key to share with member cmdlets.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; $cred = New-Credential
+PS C:\&gt; Get-SDApiKey -Credential $cred -PassThru
+
+ge5sd840hgmeocxjcy6tc58g2egitxks</dev:code>
+        <dev:remarks>
+          <maml:para>This example will store the API key to share with member cmdlets and output it as a string.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -297,11 +367,11 @@
       <command:verb>Get</command:verb>
       <command:noun>SDAuthConfig</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Securely stores your authentication information in your user profile.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Encrypts and stores your API key, instance, and organization in your user profile\.sherpadesk\credentials.json.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -337,9 +407,9 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Save-SDAuthConfig</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>This will store your API key in the default location.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -351,11 +421,12 @@
       <command:verb>Get</command:verb>
       <command:noun>SDMetadata</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Returns your instances and organizations from the SherpaDesk API.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Returns all of your instances and organizations from the SherpaDesk API and stores them in a module scoped variable to share with all member cmdlets.</maml:para>
+      <maml:para>If run after Get-SDApiKey or, if the credentials have been previously saved with Save-SDAuthConfig, Get-SDAuthConfig, then this cmdlet will automatically use the stored API key.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -363,7 +434,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>ApiKey</maml:name>
           <maml:Description>
-            <maml:para>{{Fill ApiKey Description}}</maml:para>
+            <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -389,7 +462,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>ApiKey</maml:name>
         <maml:Description>
-          <maml:para>{{Fill ApiKey Description}}</maml:para>
+          <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -439,9 +514,9 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Get-SDMetadata</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>This returns and stores the instance and organization information from the SherpaDesk API.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -453,11 +528,11 @@
       <command:verb>Get</command:verb>
       <command:noun>SDProject</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Returns projects from the SherpaDesk API</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Returns projects from the SherpaDesk API. Specify a project ID to get more information.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -465,7 +540,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ApiKey</maml:name>
           <maml:Description>
-            <maml:para>{{Fill ApiKey Description}}</maml:para>
+            <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -477,7 +554,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Instance</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Instance Description}}</maml:para>
+            <maml:para>Your SherpaDesk instance. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -489,7 +568,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Key</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Key Description}}</maml:para>
+            <maml:para>The ID of a specific project you'd like to retrieve.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -501,7 +580,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Organization</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Organization Description}}</maml:para>
+            <maml:para>Your SherpaDesk Organization. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -516,7 +597,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>ApiKey</maml:name>
         <maml:Description>
-          <maml:para>{{Fill ApiKey Description}}</maml:para>
+          <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -528,7 +611,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Instance</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Instance Description}}</maml:para>
+          <maml:para>Your SherpaDesk instance. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -540,7 +625,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Key</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Key Description}}</maml:para>
+          <maml:para>The ID of a specific project you'd like to retrieve.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -552,7 +637,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Organization</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Organization Description}}</maml:para>
+          <maml:para>Your SherpaDesk Organization. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -590,9 +677,60 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Get-SDProject
+
+id                  : 0000
+account_id          : -1
+name                : Test project
+account_name        : Howell IT
+open_tickets        : 0
+closed_tickets      : 0
+priority            :
+priority_name       :
+logged_hours        : 0.0000
+remaining_hours     : 0.0000
+complete            : 0
+client_manager      : Administrator, Anthony Howell
+default_contract_id : 0</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Returns all projects from your SherpaDesk.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-SDProject -Key 0000
+
+id                         : 0000
+account_id                 : -1
+name                       : Test project
+full_name                  : Test project
+account_name               : Howell IT
+internal_project_manager   : Administrator, Anthony Howell
+client_project_manager     :
+priority                   :
+priority_name              :
+priority_description       :
+support_group_name         :
+estimated_hours            :
+project_hours              : 0.0000
+ticket_hours               : 0.0000
+ticket_remaining_hours     : 0.0000
+todo_project_estimated     : 0.0000
+estimated_cost             :
+ticket_invoice_amount      : 0.0000
+project_invoice_amount     : 0.0000
+total_invoice_amount       : 0.0000
+ticket_noninvoiced_amount  : 0.0000
+project_noninvoiced_amount : 0.0000
+estimated_invoiced_amount  :
+ticket_bill_amount         : 0.0000
+project_bill_amount        : 0.0000
+ticket_unbilled_amount     : 0.0000
+project_unbilled_amount    : 0.0000
+fb_project_id              : 0
+fb_client_id               : 0</dev:code>
+        <dev:remarks>
+          <maml:para>Returns more data about a single project.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -604,7 +742,7 @@
       <command:verb>Get</command:verb>
       <command:noun>SDTaskTypes</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Gets the various</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -616,7 +754,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Organization</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Organization Description}}</maml:para>
+            <maml:para>Your SherpaDesk Organization. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -628,7 +768,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
           <maml:name>Instance</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Instance Description}}</maml:para>
+            <maml:para>Your SherpaDesk instance. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -640,7 +782,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
           <maml:name>ApiKey</maml:name>
           <maml:Description>
-            <maml:para>{{Fill ApiKey Description}}</maml:para>
+            <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -655,7 +799,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
         <maml:name>ApiKey</maml:name>
         <maml:Description>
-          <maml:para>{{Fill ApiKey Description}}</maml:para>
+          <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -667,7 +813,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>Instance</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Instance Description}}</maml:para>
+          <maml:para>Your SherpaDesk instance. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -679,7 +827,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Organization</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Organization Description}}</maml:para>
+          <maml:para>Your SherpaDesk Organization. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -743,7 +893,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Organization</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Organization Description}}</maml:para>
+            <maml:para>Your SherpaDesk Organization. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -755,7 +907,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
           <maml:name>Instance</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Instance Description}}</maml:para>
+            <maml:para>Your SherpaDesk instance. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -767,7 +921,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
           <maml:name>ApiKey</maml:name>
           <maml:Description>
-            <maml:para>{{Fill ApiKey Description}}</maml:para>
+            <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -782,7 +938,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
         <maml:name>ApiKey</maml:name>
         <maml:Description>
-          <maml:para>{{Fill ApiKey Description}}</maml:para>
+          <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -794,7 +952,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>Instance</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Instance Description}}</maml:para>
+          <maml:para>Your SherpaDesk instance. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -806,7 +966,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Organization</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Organization Description}}</maml:para>
+          <maml:para>Your SherpaDesk Organization. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -870,7 +1032,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ApiKey</maml:name>
           <maml:Description>
-            <maml:para>{{Fill ApiKey Description}}</maml:para>
+            <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -882,7 +1046,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Instance</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Instance Description}}</maml:para>
+            <maml:para>Your SherpaDesk instance. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -894,7 +1060,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Key</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Key Description}}</maml:para>
+            <maml:para>The ID of a specific ticket you'd like to retrieve.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -906,7 +1072,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Organization</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Organization Description}}</maml:para>
+            <maml:para>Your SherpaDesk Organization. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -921,7 +1089,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>ApiKey</maml:name>
         <maml:Description>
-          <maml:para>{{Fill ApiKey Description}}</maml:para>
+          <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -933,7 +1103,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Instance</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Instance Description}}</maml:para>
+          <maml:para>Your SherpaDesk instance. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -945,7 +1117,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Key</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Key Description}}</maml:para>
+          <maml:para>The ID of a specific ticket you'd like to retrieve.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -957,7 +1129,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Organization</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Organization Description}}</maml:para>
+          <maml:para>Your SherpaDesk Organization. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1057,7 +1231,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="3" aliases="none">
           <maml:name>Organization</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Organization Description}}</maml:para>
+            <maml:para>Your SherpaDesk Organization. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1069,7 +1245,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="4" aliases="none">
           <maml:name>Instance</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Instance Description}}</maml:para>
+            <maml:para>Your SherpaDesk instance. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1081,7 +1259,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="5" aliases="none">
           <maml:name>ApiKey</maml:name>
           <maml:Description>
-            <maml:para>{{Fill ApiKey Description}}</maml:para>
+            <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1108,7 +1288,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="5" aliases="none">
         <maml:name>ApiKey</maml:name>
         <maml:Description>
-          <maml:para>{{Fill ApiKey Description}}</maml:para>
+          <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1120,7 +1302,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="4" aliases="none">
         <maml:name>Instance</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Instance Description}}</maml:para>
+          <maml:para>Your SherpaDesk instance. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1132,7 +1316,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="3" aliases="none">
         <maml:name>Organization</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Organization Description}}</maml:para>
+          <maml:para>Your SherpaDesk Organization. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1220,7 +1406,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Organization</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Organization Description}}</maml:para>
+            <maml:para>Your SherpaDesk Organization. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1232,7 +1420,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
           <maml:name>Instance</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Instance Description}}</maml:para>
+            <maml:para>Your SherpaDesk instance. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1244,7 +1434,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
           <maml:name>ApiKey</maml:name>
           <maml:Description>
-            <maml:para>{{Fill ApiKey Description}}</maml:para>
+            <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1259,7 +1451,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
         <maml:name>ApiKey</maml:name>
         <maml:Description>
-          <maml:para>{{Fill ApiKey Description}}</maml:para>
+          <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1271,7 +1465,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>Instance</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Instance Description}}</maml:para>
+          <maml:para>Your SherpaDesk instance. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1283,7 +1479,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Organization</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Organization Description}}</maml:para>
+          <maml:para>Your SherpaDesk Organization. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1359,7 +1557,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ApiKey</maml:name>
           <maml:Description>
-            <maml:para>{{Fill ApiKey Description}}</maml:para>
+            <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1395,7 +1595,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Instance</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Instance Description}}</maml:para>
+            <maml:para>Your SherpaDesk instance. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1419,7 +1621,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Organization</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Organization Description}}</maml:para>
+            <maml:para>Your SherpaDesk Organization. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1482,7 +1686,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ApiKey</maml:name>
           <maml:Description>
-            <maml:para>{{Fill ApiKey Description}}</maml:para>
+            <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1506,7 +1712,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Instance</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Instance Description}}</maml:para>
+            <maml:para>Your SherpaDesk instance. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1518,7 +1726,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Organization</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Organization Description}}</maml:para>
+            <maml:para>Your SherpaDesk Organization. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1545,7 +1755,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>ApiKey</maml:name>
         <maml:Description>
-          <maml:para>{{Fill ApiKey Description}}</maml:para>
+          <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1593,7 +1805,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Instance</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Instance Description}}</maml:para>
+          <maml:para>Your SherpaDesk instance. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1617,7 +1831,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Organization</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Organization Description}}</maml:para>
+          <maml:para>Your SherpaDesk Organization. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1741,7 +1957,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ApiKey</maml:name>
           <maml:Description>
-            <maml:para>{{Fill ApiKey Description}}</maml:para>
+            <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1777,7 +1995,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Instance</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Instance Description}}</maml:para>
+            <maml:para>Your SherpaDesk instance. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1813,7 +2033,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Organization</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Organization Description}}</maml:para>
+            <maml:para>Your SherpaDesk Organization. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1828,7 +2050,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ApiKey</maml:name>
           <maml:Description>
-            <maml:para>{{Fill ApiKey Description}}</maml:para>
+            <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1852,7 +2076,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Instance</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Instance Description}}</maml:para>
+            <maml:para>Your SherpaDesk instance. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1864,7 +2090,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Organization</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Organization Description}}</maml:para>
+            <maml:para>Your SherpaDesk Organization. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1891,7 +2119,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>ApiKey</maml:name>
         <maml:Description>
-          <maml:para>{{Fill ApiKey Description}}</maml:para>
+          <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1939,7 +2169,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Instance</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Instance Description}}</maml:para>
+          <maml:para>Your SherpaDesk instance. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1975,7 +2207,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Organization</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Organization Description}}</maml:para>
+          <maml:para>Your SherpaDesk Organization. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -2093,7 +2327,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ApiKey</maml:name>
           <maml:Description>
-            <maml:para>{{Fill ApiKey Description}}</maml:para>
+            <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -2117,7 +2353,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Instance</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Instance Description}}</maml:para>
+            <maml:para>Your SherpaDesk instance. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -2129,7 +2367,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Organization</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Organization Description}}</maml:para>
+            <maml:para>Your SherpaDesk Organization. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -2156,7 +2396,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ApiKey</maml:name>
           <maml:Description>
-            <maml:para>{{Fill ApiKey Description}}</maml:para>
+            <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -2168,7 +2410,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Instance</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Instance Description}}</maml:para>
+            <maml:para>Your SherpaDesk instance. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -2180,7 +2424,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Organization</maml:name>
           <maml:Description>
-            <maml:para>{{Fill Organization Description}}</maml:para>
+            <maml:para>Your SherpaDesk Organization. This is passed automatically after:</maml:para>
+            <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+            <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -2219,7 +2465,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>ApiKey</maml:name>
         <maml:Description>
-          <maml:para>{{Fill ApiKey Description}}</maml:para>
+          <maml:para>Your SherpaDesk API Key. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDApiKey.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -2243,7 +2491,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Instance</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Instance Description}}</maml:para>
+          <maml:para>Your SherpaDesk instance. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -2255,7 +2505,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Organization</maml:name>
         <maml:Description>
-          <maml:para>{{Fill Organization Description}}</maml:para>
+          <maml:para>Your SherpaDesk Organization. This is passed automatically after:</maml:para>
+          <maml:para>- It is retrieved from the API with Get-SDMetaData.</maml:para>
+          <maml:para>- It is retrieved from local storage with Get-SDAuthConfig</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
