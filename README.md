@@ -1,4 +1,4 @@
-[![Build Status](https://dev.azure.com/ThePoShWolf/PSSherpaDesk/_apis/build/status/PSSherpaDesk-CI?branchName=master)](https://dev.azure.com/ThePoShWolf/PSSherpaDesk/_build/latest?definitionId=1&branchName=master)
+[![Build Status](https://theposhwolf.visualstudio.com/PSSherpaDesk/_apis/build/status/Publish?branchName=master)](https://theposhwolf.visualstudio.com/PSSherpaDesk/_build/latest?definitionId=7&branchName=master)
 
 # PSSherpaDesk
 
