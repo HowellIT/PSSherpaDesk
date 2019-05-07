@@ -1,46 +1,4 @@
-Function Get-SDSavePath {
-    Param (
-
-    )
-    If($PSVersionTable.PSVersion.Major -ge 6){
-        # PS Core
-        If($IsLinux){
-            $saveDir = $env:HOME
-        }ElseIf($IsWindows){
-            $saveDir = $env:USERPROFILE
-        }
-    }Else{
-        # Windows PS
-        $saveDir = $env:USERPROFILE
-    }
-    "$saveDir\.pssherpadesk"
-}
-Function Invoke-SherpaDeskAPICall {
-    Param(
-        [string]$Resource,
-        [ValidateSet('Get','Put','Post')]
-        [string]$Method,
-        [string]$Body,
-        [string]$Organization,
-        [string]$Instance,
-        [string]$ApiKey
-    )
-    $baseUri = 'https://api.sherpadesk.com'
-
-    $encodedAuth = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("$Organization-$Instance`:$ApiKey"))
-
-    $header = @{
-        Authorization = "Basic $encodedAuth"
-        Accept = 'application/json'
-    }
-    
-    If($Method -eq 'Get'){
-        Invoke-RestMethod -Method $Method -Uri "$baseUri/$Resource" -Headers $header
-    }ElseIf(@('Post','Put') -contains $Method){
-        Invoke-RestMethod -Method $Method -Uri "$baseUri/$Resource" -Headers $header -ContentType 'application/json' -Body $Body
-    }
-}
-Function Get-SDAccount{
+﻿Function Get-SDAccount{
     Param(
         [parameter(
             ParameterSetName = 'ByKey'
@@ -97,10 +55,12 @@ Function Get-SDAPIKey {
 }
 Function Get-SDAuthConfig {
     Param(
-
+        [switch]$Silent
     )
     If($AuthConfig){
-        $AuthConfig
+        If(-not ($Silent.IsPresent)){
+            $AuthConfig
+        }
     }Else{
         $dir = Get-SDSavePath
         If(Test-Path $dir\credentials.json){
@@ -110,7 +70,9 @@ Function Get-SDAuthConfig {
         ForEach($property in $encryptedAuth.psobject.Properties){
             $AuthConfig."$($property.name)" = [pscredential]::New('user',(ConvertTo-SecureString $property.value)).GetNetworkCredential().password
         }
-        $AuthConfig
+        If(-not ($Silent.IsPresent)){
+            $AuthConfig
+        }
     }
 }
 Function Get-SDMetadata {
@@ -365,8 +327,25 @@ Function New-SDUser {
     Invoke-SherpaDeskAPICall -Method Post -Resource $resource -Organization $Organization -Instance $Instance -ApiKey $ApiKey -Body $jsonbody
 }
 Function Save-SDAuthConfig {
+    [cmdletbinding(
+        DefaultParameterSetName = 'FromAuthConfig'
+    )]
     Param(
-
+        [parameter(
+            ParameterSetName = 'Passed'
+        )]
+        [ValidateNotNullOrEmpty()]
+        [string]$Organization,
+        [parameter(
+            ParameterSetName = 'Passed'
+        )]
+        [ValidateNotNullOrEmpty()]
+        [string]$Instance,
+        [parameter(
+            ParameterSetName = 'Passed'
+        )]
+        [ValidateNotNullOrEmpty()]
+        [string]$ApiKey
     )
     $dir = Get-SDSavePath
     If(-not(Test-Path $dir -PathType Container)){
@@ -374,6 +353,13 @@ Function Save-SDAuthConfig {
     }
     If(-not(Test-Path $dir\credentials.json -PathType Leaf)){
         New-Item $dir\credentials.json -ItemType File
+    }
+    If($PSCmdlet.ParameterSetName -eq 'Passed'){
+        $Script:AuthConfig = @{
+            ApiKey = $ApiKey
+            WorkingOrganization = $Organization
+            WorkingInstance = $Instance
+        }
     }
     $encryptedAuth = @{}
     ForEach($property in $AuthConfig.GetEnumerator()){
@@ -411,4 +397,46 @@ Function Set-SDTicket {
     Write-Verbose $jsonbody
 
     Invoke-SherpaDeskAPICall -Method Put -Resource $resource -Organization $Organization -Instance $Instance -ApiKey $ApiKey -Body $jsonbody
+}
+Function Get-SDSavePath {
+    Param (
+
+    )
+    If($PSVersionTable.PSVersion.Major -ge 6){
+        # PS Core
+        If($IsLinux){
+            $saveDir = $env:HOME
+        }ElseIf($IsWindows){
+            $saveDir = $env:USERPROFILE
+        }
+    }Else{
+        # Windows PS
+        $saveDir = $env:USERPROFILE
+    }
+    "$saveDir\.pssherpadesk"
+}
+Function Invoke-SherpaDeskAPICall {
+    Param(
+        [string]$Resource,
+        [ValidateSet('Get','Put','Post')]
+        [string]$Method,
+        [string]$Body,
+        [string]$Organization,
+        [string]$Instance,
+        [string]$ApiKey
+    )
+    $baseUri = 'https://api.sherpadesk.com'
+
+    $encodedAuth = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("$Organization-$Instance`:$ApiKey"))
+
+    $header = @{
+        Authorization = "Basic $encodedAuth"
+        Accept = 'application/json'
+    }
+    
+    If($Method -eq 'Get'){
+        Invoke-RestMethod -Method $Method -Uri "$baseUri/$Resource" -Headers $header
+    }ElseIf(@('Post','Put') -contains $Method){
+        Invoke-RestMethod -Method $Method -Uri "$baseUri/$Resource" -Headers $header -ContentType 'application/json' -Body $Body
+    }
 }

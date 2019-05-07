@@ -1,20 +1,14 @@
 [cmdletbinding()]
 param(
-    [string[]]$Task = 'manual'
+    [string[]]$Task = 'ModuleBuild'
 )
 
-$DependentModules = @('Pester','Psake','PlatyPS','PSDeploy')
+$DependentModules = @('PSDeploy','InvokeBuild','PlatyPS','Pester') # add pester when pester tests are added
 Foreach ($Module in $DependentModules){
     If (-not (Get-Module $module -ListAvailable)){
         Install-Module -name $Module -Scope CurrentUser -Force
     }
     Import-Module $module -ErrorAction Stop
 }
-$env:ModuleTempDir = "$PSScriptRoot\build" #$env:TEMP
-$env:ModuleName = "PSSherpaDesk"
-$env:Author = "Anthony Howell"
-$env:ModuleVersion = "0.0.1"
 # Builds the module by invoking psake on the build.psake.ps1 script.
-Invoke-PSake $PSScriptRoot\psake.ps1 -taskList $Task
-#remove-module pssherpadesk
-#import-module .\build\PSSherpaDesk
+Invoke-Build "$PSScriptRoot\PSSherpaDesk.build.ps1" -Task $Task
