@@ -5,7 +5,7 @@ $testPath = "$PSScriptRoot\tests"
 $moduleName = "PSSherpaDesk"
 $modulePath = "$buildPath\$moduleName"
 $author = 'Anthony Howell'
-$version = '0.0.3'
+$version = '0.0.4'
 
 task Clean {
     If(Get-Module $moduleName){
