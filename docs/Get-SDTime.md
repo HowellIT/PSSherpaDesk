@@ -47,7 +47,10 @@ Accept wildcard characters: False
 ```
 
 ### -ApiKey
-{{Fill ApiKey Description}}
+Your SherpaDesk API Key. This is passed automatically after:
+
+- It is retrieved from the API with Get-SDApiKey.
+- It is retrieved from local storage with Get-SDAuthConfig
 
 ```yaml
 Type: String
@@ -62,7 +65,10 @@ Accept wildcard characters: False
 ```
 
 ### -Instance
-{{Fill Instance Description}}
+Your SherpaDesk instance. This is passed automatically after:
+
+- It is retrieved from the API with Get-SDMetaData.
+- It is retrieved from local storage with Get-SDAuthConfig
 
 ```yaml
 Type: String
@@ -77,7 +83,10 @@ Accept wildcard characters: False
 ```
 
 ### -Organization
-{{Fill Organization Description}}
+Your SherpaDesk Organization. This is passed automatically after:
+
+- It is retrieved from the API with Get-SDMetaData.
+- It is retrieved from local storage with Get-SDAuthConfig
 
 ```yaml
 Type: String

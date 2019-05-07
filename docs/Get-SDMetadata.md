@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-SDMetadata
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Returns your instances and organizations from the SherpaDesk API.
 
 ## SYNTAX
 
@@ -17,21 +17,26 @@ Get-SDMetadata [[-ApiKey] <String>] [-PassThru]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Returns all of your instances and organizations from the SherpaDesk API and stores them in a module scoped variable to share with all member cmdlets.
+
+If run after Get-SDApiKey or, if the credentials have been previously saved with Save-SDAuthConfig, Get-SDAuthConfig, then this cmdlet will automatically use the stored API key.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-SDMetadata
 ```
 
-{{ Add example description here }}
+This returns and stores the instance and organization information from the SherpaDesk API.
 
 ## PARAMETERS
 
 ### -ApiKey
-{{Fill ApiKey Description}}
+Your SherpaDesk API Key. This is passed automatically after:
+
+- It is retrieved from the API with Get-SDApiKey.
+- It is retrieved from local storage with Get-SDAuthConfig
 
 ```yaml
 Type: String

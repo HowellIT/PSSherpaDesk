@@ -8,31 +8,89 @@ schema: 2.0.0
 # Get-SDAccount
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Gets SherpaDesk accounts. which are groupings of users. Typically things like departments, clients, etc.
 
 ## SYNTAX
 
+### ByKey
 ```
 Get-SDAccount [-Key <String>] [-Organization <String>] [-Instance <String>] [-ApiKey <String>]
  [<CommonParameters>]
 ```
 
+### (Default)
+```
+Get-SDAccount [-Organization <String>] [-Instance <String>] [-ApiKey <String>]
+ [<CommonParameters>]
+```
+
 ## DESCRIPTION
-{{Fill in the Description}}
+Gets SherpaDesk accounts. Accounts in SherpaDesk are groupings of users. Typically things like departments, clients, etc.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-SDAccount
+
+id                 : 00000
+name               : Camping Supplies, Inc
+task_types         :
+projects           :
+locations          :
+account_statistics : @{ticket_counts=; timelogs=0; contracts=1; hours=2.0000; expenses=0}
 ```
 
-{{ Add example description here }}
+This will return a listing of all accounts that you have set up in SherpaDesk
+
+### Example 2
+```powershell
+PS C:\> Get-SDAccount -Key 00000
+
+id                     : 00000
+name                   : Camping Supplies, Inc
+note                   :
+is_active              : True
+is_organization        : True
+bwd_number             : 1005
+client_contract_id     :
+number                 :
+ref1                   :
+ref2                   :
+representative_name    : Administrator, Anthony Howell
+internal_location_name :
+city                   :
+state                  :
+zipcode                :
+country                :
+phone1                 :
+phone2                 :
+address1               :
+address2               :
+email_suffix           :
+fb_client_id           : 0
+qb_customer_id         : 0
+xero_contact_id        :
+logo                   :
+files                  :
+locations              :
+users                  : {}
+projects               : {}
+assets                 :
+account_statistics     : @{ticket_counts=; timelogs=0; contracts=1; hours=2.0000; expenses=0}
+primary_contact        :
+customfields           : {}
+```
+
+This will return more data about the specified account.
 
 ## PARAMETERS
 
 ### -ApiKey
-{{Fill ApiKey Description}}
+Your SherpaDesk API Key. This is passed automatically after:
+
+- It is retrieved from the API with Get-SDApiKey.
+- It is retrieved from local storage with Get-SDAuthConfig
 
 ```yaml
 Type: String
@@ -47,7 +105,10 @@ Accept wildcard characters: False
 ```
 
 ### -Instance
-{{Fill Instance Description}}
+Your SherpaDesk instance. This is passed automatically after:
+
+- It is retrieved from the API with Get-SDMetaData.
+- It is retrieved from local storage with Get-SDAuthConfig
 
 ```yaml
 Type: String
@@ -62,11 +123,11 @@ Accept wildcard characters: False
 ```
 
 ### -Key
-{{Fill Key Description}}
+The ID of a specific account you'd like to retrieve.
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: ByKey
 Aliases:
 
 Required: False
@@ -77,7 +138,10 @@ Accept wildcard characters: False
 ```
 
 ### -Organization
-{{Fill Organization Description}}
+Your SherpaDesk Organization. This is passed automatically after:
+
+- It is retrieved from the API with Get-SDMetaData.
+- It is retrieved from local storage with Get-SDAuthConfig
 
 ```yaml
 Type: String
